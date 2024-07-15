@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,10 +15,13 @@ public class SampleSceneManager : MonoBehaviour
 
         GameObject gcanvasGO = GameObject.Find("Canvas");
         simpleWord = gcanvasGO?.AddComponent<SimpleWord>();
-        simpleWord.SimpleWordInit("bagettos");
+
+        WordsList words = new WordsList();
+
+        simpleWord.SimpleWordInit(words.getRandWord());
         simpleWord.Parent = gcanvasGO;
-        simpleWord.X = 100;
-        simpleWord.Y = 100;
+        simpleWord.X = 0;
+        simpleWord.Y = -60;
     }
     public void OnExit(Scene scene)
     {
@@ -34,4 +38,28 @@ public class SampleSceneManager : MonoBehaviour
     {
 
     }
+}
+
+public class WordsList 
+{
+    private List<string> words = new List<string>{"Хліба", "Москіто", "Маквіно", "Чудо"};
+    public void addWord(string word)
+    {
+        words.Add(word);
+    }
+    public void removeWord(string word)
+    {
+        words.Remove(word);
+    }
+    public string getRandWord()
+    {
+        string res = "";
+        System.Random rand = new ();
+        int i = rand.Next(0,words.Count);
+        res = words[i];
+        return res;
+    }
+    private void loadFromFile(){}
+    private void loadToFile(){}
+
 }
