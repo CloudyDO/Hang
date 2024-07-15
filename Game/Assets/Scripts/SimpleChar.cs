@@ -19,31 +19,31 @@ public class SimpleChar : MonoBehaviour, IHangChar
         set
         {
             _isMasked = value;
-            if(UText != null)
+            if (UText != null)
             {
                 UText.text = _isMasked ? MaskChar.ToString() : RealChar.ToString();
             }
         }
     }
-    public float X 
-    { 
-        get => _x; 
-        set 
+    public float X
+    {
+        get => _x;
+        set
         {
             _x = value;
-            Geo.transform.localPosition = new Vector3(_x, _y);
-        } 
+            Geo.transform.localPosition = new Vector3(_x, _y, 0);
+        }
     }
 
-    public GameObject Parent 
-    { 
+    public GameObject Parent
+    {
         get => _parent;
         set
         {
             _parent = value;
-            if(Geo != null)
+            if (Geo != null)
             {
-                Geo.transform.parent = _parent.transform;
+                Geo.transform.SetParent(_parent.transform, false);
             }
         }
     }
@@ -57,11 +57,13 @@ public class SimpleChar : MonoBehaviour, IHangChar
         IsMasked = true;
         RealChar = realChar;
         MaskChar = maskChar;
-        Geo = new GameObject("MyGlyph");
+        Geo = new GameObject("HangChar");
         UText = Geo.AddComponent<Text>();
         UText.text = maskChar.ToString();
         Geo.transform.localPosition = new Vector3(X, Y);
-        UText.fontSize = 36;
+        UText.fontSize = 24;
+        UText.font = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
+        UText.resizeTextForBestFit = true;
     }
     // Start is called before the first frame update
     void Start()

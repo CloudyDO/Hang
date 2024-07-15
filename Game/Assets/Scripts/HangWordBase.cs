@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class HangWordBase : MonoBehaviour, IHangWord
 {
-    public virtual float X {get; set;}
-    public virtual float Y {get; set;}
+    private GameObject _parent;
+    public virtual float X { get; set; }
+    public virtual float Y { get; set; }
 
-    public List<IHangChar> HangChars {get; set;}
+    public List<IHangChar> HangChars { get; set; }
+    public GameObject Parent
+    {
+        get => _parent;
+        set
+        {
+            _parent = value;
+            if (Geo != null)
+            {
+                Geo.transform.SetParent(_parent.transform, false);
+            }
+        }
+    }
+    public GameObject Geo { get; set; }
     public void Show()
     {
 
@@ -19,11 +33,11 @@ public class HangWordBase : MonoBehaviour, IHangWord
     public bool checkCharacter(char character)
     {
         bool res = false;
-        if(HangChars == null) return res;
+        if (HangChars == null) return res;
 
-        for(int i = 0; i < HangChars.Count; i++)
+        for (int i = 0; i < HangChars.Count; i++)
         {
-            if(HangChars[i].RealChar == character)
+            if (HangChars[i].RealChar == character)
             {
                 res = true;
                 break;
@@ -31,14 +45,14 @@ public class HangWordBase : MonoBehaviour, IHangWord
         }
         return res;
     }
-    
+
     public void unmaskCharacter(char character)
     {
-        if(HangChars == null) return;
+        if (HangChars == null) return;
 
-        for(int i = 0; i < HangChars.Count; i++)
+        for (int i = 0; i < HangChars.Count; i++)
         {
-            if(HangChars[i].RealChar == character)
+            if (HangChars[i].RealChar == character)
             {
                 HangChars[i].IsMasked = false;
             }
@@ -47,12 +61,12 @@ public class HangWordBase : MonoBehaviour, IHangWord
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

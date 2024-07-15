@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SimpleWord :  HangWordBase
+public class SimpleWord : HangWordBase
 {
     private float _x;
     private float _y;
-
     public override float X
     {
         get => _x;
@@ -22,9 +21,9 @@ public class SimpleWord :  HangWordBase
             }
         }
     }
-    public override float Y 
+    public override float Y
     {
-        get => _y; 
+        get => _y;
         set
         {
             _y = value;
@@ -39,26 +38,25 @@ public class SimpleWord :  HangWordBase
     public void SimpleWordInit(string word)
     {
         HangChars = new List<IHangChar>();
+        Geo = new GameObject("HangWord");
         foreach (var item in word)
         {
-            // GameObject go = GameObject.Find("MainObject");
-            // GameObject go = this.transform.parent.gameObject;
-            SimpleChar ch = this.AddComponent<SimpleChar>();
-            ch.SimpleCharInit(item,'_');
-            ch.Parent = this.gameObject;
+            SimpleChar ch = Geo.AddComponent<SimpleChar>();
+            ch.SimpleCharInit(item, '_');
+            ch.Parent = Geo;
             HangChars.Add(ch);
         }
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

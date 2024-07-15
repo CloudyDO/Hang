@@ -10,33 +10,28 @@ public class SampleSceneManager : MonoBehaviour
     private SimpleWord simpleWord;
     public void OnStart(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Sample manager OnStart");
-        if(scene.name != "SampleScene") return;
-        Debug.Log("5");
+        if (scene.name != "SampleScene") return;
 
-        GameObject go = GameObject.Find("MainObject");
-        simpleWord = go?.AddComponent<SimpleWord>();
-        Debug.Log("6");
-        simpleWord.SimpleWordInit("baget");
-        Debug.Log("7");
-        SceneManager.MoveGameObjectToScene(simpleWord.gameObject, scene);
-        Debug.Log("Sample manager OnStart");
+        GameObject gcanvasGO = GameObject.Find("Canvas");
+        simpleWord = gcanvasGO?.AddComponent<SimpleWord>();
+        simpleWord.SimpleWordInit("bagettos");
+        simpleWord.Parent = gcanvasGO;
+        simpleWord.X = 100;
+        simpleWord.Y = 100;
     }
     public void OnExit(Scene scene)
     {
-        if(scene.name != "SampleScene") return;
-
-        Debug.Log("Sample manager OnExit");
+        if (scene.name != "SampleScene") return;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
