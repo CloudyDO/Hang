@@ -16,9 +16,11 @@ public class SimpleWord : HangWordBase
             float offset = 0;
             foreach (var item in HangChars)
             {
-                item.X = _x + offset;
+                item.X = offset;
                 offset += Spacing + item.Width;
             }
+
+            Geo.transform.localPosition = new Vector3(_x, _y, 0);
         }
     }
     public override float Y
@@ -31,6 +33,8 @@ public class SimpleWord : HangWordBase
             {
                 item.Y = _y;
             }
+
+            Geo.transform.localPosition = new Vector3(_x, _y, 0);
         }
     }
     public float Spacing { get; } = 10;
