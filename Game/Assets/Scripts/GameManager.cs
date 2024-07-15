@@ -1,20 +1,35 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.sceneLoaded += this.OnSceneLoaded;
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void BackMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
     public void Exit()
     {
         Application.Quit();
-        //Debug.Log("You exit game");
     }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "SampleScene")
+        {
+            GameObject go = GameObject.Find("MainObject");
+            SampleSceneManager _SSManager = go.AddComponent<SampleSceneManager>();
+            SceneManager.sceneUnloaded += _SSManager.OnExit;
+            SceneManager.MoveGameObjectToScene(go, scene);
+            _SSManager.OnStart(scene, mode);
+        }
+    }
+
 }
