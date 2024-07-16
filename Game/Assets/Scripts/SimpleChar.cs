@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.TextCore;
 using UnityEngine.UI;
 
 public class SimpleChar : MonoBehaviour, IHangChar
 {
-    private float _x;
-    private float _y;
+    private float _x = 0;
+    private float _y = 0;
+    private float _width;
+    private float _height;
+
     private GameObject _parent;
 
     private bool _isMasked;
@@ -48,8 +53,28 @@ public class SimpleChar : MonoBehaviour, IHangChar
         }
     }
     public float Y { get; set; }
-    public float Height { get; set; }
-    public float Width { get; set; } = 36;
+    public float Height 
+    { 
+        get => _height;
+
+        set 
+        {
+            _height = value;
+            RectTransform rt = Geo.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(_width,_height);
+        } 
+    }
+    public float Width 
+    { 
+        get => _width;
+
+        set 
+        {
+            _width = value;
+            RectTransform rt = Geo.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(_width,_height);
+        }
+    }
     public GameObject Geo { get; set; }
     private Text UText { get; set; }
     public void SimpleCharInit(char realChar, char maskChar)
@@ -60,8 +85,14 @@ public class SimpleChar : MonoBehaviour, IHangChar
         Geo = new GameObject("HangChar");
         UText = Geo.AddComponent<Text>();
         UText.text = maskChar.ToString();
+
+        UText.alignment = TextAnchor.MiddleCenter;
+        Width = 50;
+        Height = 70;
+
         Geo.transform.localPosition = new Vector3(X, Y);
-        UText.fontSize = 24;
+        UText.fontSize = 64;
+        UText.resizeTextMaxSize = 60;
         UText.font = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
         UText.resizeTextForBestFit = true;
     }

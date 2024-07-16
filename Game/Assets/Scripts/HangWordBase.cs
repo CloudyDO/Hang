@@ -5,6 +5,9 @@ using UnityEngine;
 public class HangWordBase : MonoBehaviour, IHangWord
 {
     private GameObject _parent;
+    
+    private float _width;
+    private float _height = 24;
     public virtual float X { get; set; }
     public virtual float Y { get; set; }
 
@@ -19,6 +22,26 @@ public class HangWordBase : MonoBehaviour, IHangWord
             {
                 Geo.transform.SetParent(_parent.transform, false);
             }
+        }
+    }
+    public float Width
+    {
+        get => _width;
+        set
+        {
+            _width = value;
+            RectTransform rt = Geo.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(_width,_height);
+        }
+    }
+    public float Height
+    {
+        get => _height;
+        set
+        {
+            _height = value;
+            RectTransform rt = Geo.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(_width,_height);
         }
     }
     public GameObject Geo { get; set; }
