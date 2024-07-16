@@ -20,8 +20,10 @@ public class SampleSceneManager : MonoBehaviour
 
         simpleWord.SimpleWordInit(words.getRandWord());
         simpleWord.Parent = gcanvasGO;
+        float h = gcanvasGO.GetComponent<RectTransform>().sizeDelta.y;
+        float wh = simpleWord.Height;
         simpleWord.X = 0;
-        simpleWord.Y = -60;
+        simpleWord.Y = h/2-wh;
     }
     public void OnExit(Scene scene)
     {

@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class SimpleChar : MonoBehaviour, IHangChar
 {
-    private float _x;
-    private float _y;
+    private float _x = 0;
+    private float _y = 0;
     private float _width;
     private float _height;
 

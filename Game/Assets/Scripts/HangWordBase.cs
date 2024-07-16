@@ -7,7 +7,7 @@ public class HangWordBase : MonoBehaviour, IHangWord
     private GameObject _parent;
     
     private float _width;
-    private float _height;
+    private float _height = 24;
     public virtual float X { get; set; }
     public virtual float Y { get; set; }
 
