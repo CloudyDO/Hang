@@ -19,6 +19,10 @@ public class SampleSceneManager : MonoBehaviour
         myKeyboard = gcanvasGO?.AddComponent<RegularKeyboard>();
         myKeyboard.OnKeyPressed += OnKeyPressed;
 
+
+        var sk = gcanvasGO.GetComponentInChildren<ScreenKeyboard>();
+        sk.OnKeyPressed += OnKeyPressed;
+        
         currentWord = words.getRandWord();
         simpleWord.SimpleWordInit(currentWord);
 
