@@ -9,12 +9,16 @@ using UnityEngine.SceneManagement;
 public class SampleSceneManager : MonoBehaviour
 {
     private SimpleWord simpleWord;
+    private IHangKeyboard myKeyboard;
     public void OnStart(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "SampleScene") return;
 
         GameObject gcanvasGO = GameObject.Find("Canvas");
         simpleWord = gcanvasGO?.AddComponent<SimpleWord>();
+    
+        myKeyboard = gcanvasGO?.AddComponent<RegularKeyboard>();
+        myKeyboard.OnKeyPressed += OnKeyPressed;
 
         WordsList words = new WordsList();
 
@@ -28,6 +32,11 @@ public class SampleSceneManager : MonoBehaviour
     public void OnExit(Scene scene)
     {
         if (scene.name != "SampleScene") return;
+    }
+
+    private void OnKeyPressed(char ch)
+    {
+        Debug.Log("Key " + ch + " pressed");
     }
     // Start is called before the first frame update
     void Start()
