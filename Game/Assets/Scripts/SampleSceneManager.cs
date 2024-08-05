@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,27 +7,31 @@ public class SampleSceneManager : MonoBehaviour
 {
     private SimpleWord simpleWord;
     private IHangKeyboard myKeyboard;
+    private WordsList words = new WordsList();
+    private string currentWord;
     public void OnStart(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "SampleScene") return;
 
         GameObject gcanvasGO = GameObject.Find("Canvas");
         simpleWord = gcanvasGO?.AddComponent<SimpleWord>();
-    
+
         myKeyboard = gcanvasGO?.AddComponent<RegularKeyboard>();
         myKeyboard.OnKeyPressed += OnKeyPressed;
 
+
         var sk = gcanvasGO.GetComponentInChildren<ScreenKeyboard>();
         sk.OnKeyPressed += OnKeyPressed;
-
-        WordsList words = new WordsList();
+        
+        currentWord = words.getRandWord();
+        simpleWord.SimpleWordInit(currentWord);
 
         simpleWord.SimpleWordInit(words.getRandWord());
         simpleWord.Parent = gcanvasGO;
         float h = gcanvasGO.GetComponent<RectTransform>().sizeDelta.y;
         float wh = simpleWord.Height;
         simpleWord.X = 0;
-        simpleWord.Y = h/2-wh;
+        simpleWord.Y = h / 2 - wh;
     }
     public void OnExit(Scene scene)
     {
@@ -40,23 +41,23 @@ public class SampleSceneManager : MonoBehaviour
     private void OnKeyPressed(char ch)
     {
         Debug.Log("Key " + ch + " pressed");
+        simpleWord.RevealChar(ch);
+
     }
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 }
 
-public class WordsList 
+public class WordsList
 {
-    private List<string> words = new List<string>{"Хліба", "Москіто", "Маквіно", "Чудо"};
+    private List<string> words = new List<string> { "Хліба", "Москіто", "Маквіно", "Чудо" };
     public void addWord(string word)
     {
         words.Add(word);
@@ -68,12 +69,12 @@ public class WordsList
     public string getRandWord()
     {
         string res = "";
-        System.Random rand = new ();
-        int i = rand.Next(0,words.Count);
+        System.Random rand = new();
+        int i = rand.Next(0, words.Count);
         res = words[i];
         return res;
     }
-    private void loadFromFile(){}
-    private void loadToFile(){}
+    private void loadFromFile() { }
+    private void loadToFile() { }
 
 }

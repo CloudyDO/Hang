@@ -1,13 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.TextCore;
 using UnityEngine.UI;
 
 public class SimpleChar : MonoBehaviour, IHangChar
 {
+
     private float _x = 0;
     private float _y = 0;
     private float _width;
@@ -53,26 +50,26 @@ public class SimpleChar : MonoBehaviour, IHangChar
         }
     }
     public float Y { get; set; }
-    public float Height 
-    { 
+    public float Height
+    {
         get => _height;
 
-        set 
+        set
         {
             _height = value;
             RectTransform rt = Geo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(_width,_height);
-        } 
+            rt.sizeDelta = new Vector2(_width, _height);
+        }
     }
-    public float Width 
-    { 
+    public float Width
+    {
         get => _width;
 
-        set 
+        set
         {
             _width = value;
             RectTransform rt = Geo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(_width,_height);
+            rt.sizeDelta = new Vector2(_width, _height);
         }
     }
     public GameObject Geo { get; set; }
@@ -95,16 +92,14 @@ public class SimpleChar : MonoBehaviour, IHangChar
         UText.resizeTextMaxSize = 60;
         UText.font = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
         UText.resizeTextForBestFit = true;
+
+
     }
-    // Start is called before the first frame update
     void Start()
     {
 
     }
-
-    // Update is called once per frame
     void Update()
     {
-
     }
 }
