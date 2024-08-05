@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SimpleWord : HangWordBase
 {
+
     private float _x;
     private float _y;
     private float _border;
@@ -65,6 +66,16 @@ public class SimpleWord : HangWordBase
             ch.SimpleCharInit(item, '_');
             ch.Parent = Geo;
             HangChars.Add(ch);
+        }
+    }
+    public void RevealChar(char inputChar)
+    {
+        foreach (var hangChar in HangChars)
+        {
+            if (char.ToLower(hangChar.RealChar) == char.ToLower(inputChar))
+            {
+                hangChar.IsMasked = false;
+            }
         }
     }
 

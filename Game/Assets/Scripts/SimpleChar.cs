@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class SimpleChar : MonoBehaviour, IHangChar
 {
+
     private float _x = 0;
     private float _y = 0;
     private float _width;
@@ -53,30 +54,31 @@ public class SimpleChar : MonoBehaviour, IHangChar
         }
     }
     public float Y { get; set; }
-    public float Height 
-    { 
+    public float Height
+    {
         get => _height;
 
-        set 
+        set
         {
             _height = value;
             RectTransform rt = Geo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(_width,_height);
-        } 
+            rt.sizeDelta = new Vector2(_width, _height);
+        }
     }
-    public float Width 
-    { 
+    public float Width
+    {
         get => _width;
 
-        set 
+        set
         {
             _width = value;
             RectTransform rt = Geo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(_width,_height);
+            rt.sizeDelta = new Vector2(_width, _height);
         }
     }
     public GameObject Geo { get; set; }
     private Text UText { get; set; }
+    private List<SimpleChar> _allChars = new List<SimpleChar>();
     public void SimpleCharInit(char realChar, char maskChar)
     {
         IsMasked = true;
@@ -95,6 +97,8 @@ public class SimpleChar : MonoBehaviour, IHangChar
         UText.resizeTextMaxSize = 60;
         UText.font = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
         UText.resizeTextForBestFit = true;
+
+        _allChars.Add(this);
     }
     // Start is called before the first frame update
     void Start()
@@ -105,6 +109,21 @@ public class SimpleChar : MonoBehaviour, IHangChar
     // Update is called once per frame
     void Update()
     {
+        if (Input.anyKeyDown)
+        {
+            string inputString = Input.inputString;
 
+            if (!string.IsNullOrEmpty(inputString) && char.IsLetter(inputString[0]))
+            {
+                char inputChar = inputString[0];
+                foreach (SimpleChar hangChar in _allChars)
+                {
+                    if (hangChar.IsMasked && hangChar.RealChar == inputChar)
+                    {
+                        hangChar.IsMasked = false;
+                    }
+                }
+            }
+        }
     }
 }
