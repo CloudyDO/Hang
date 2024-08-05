@@ -74,7 +74,6 @@ public class SimpleChar : MonoBehaviour, IHangChar
     }
     public GameObject Geo { get; set; }
     private Text UText { get; set; }
-    private List<SimpleChar> _allChars = new List<SimpleChar>();
     public void SimpleCharInit(char realChar, char maskChar)
     {
         IsMasked = true;
@@ -94,7 +93,7 @@ public class SimpleChar : MonoBehaviour, IHangChar
         UText.font = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
         UText.resizeTextForBestFit = true;
 
-        _allChars.Add(this);
+
     }
     void Start()
     {
