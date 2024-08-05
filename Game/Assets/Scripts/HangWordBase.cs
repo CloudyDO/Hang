@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HangWordBase : MonoBehaviour, IHangWord
 {
     private GameObject _parent;
-    
+
     private float _width;
     private float _height = 24;
     public virtual float X { get; set; }
@@ -31,7 +30,7 @@ public class HangWordBase : MonoBehaviour, IHangWord
         {
             _width = value;
             RectTransform rt = Geo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(_width,_height);
+            rt.sizeDelta = new Vector2(_width, _height);
         }
     }
     public float Height
@@ -41,7 +40,7 @@ public class HangWordBase : MonoBehaviour, IHangWord
         {
             _height = value;
             RectTransform rt = Geo.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(_width,_height);
+            rt.sizeDelta = new Vector2(_width, _height);
         }
     }
     public GameObject Geo { get; set; }
@@ -81,13 +80,11 @@ public class HangWordBase : MonoBehaviour, IHangWord
             }
         }
     }
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 

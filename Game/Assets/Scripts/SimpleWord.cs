@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SimpleWord : HangWordBase
 {
+
     private float _x;
     private float _y;
     private float _border;
@@ -67,14 +66,22 @@ public class SimpleWord : HangWordBase
             HangChars.Add(ch);
         }
     }
+    public void RevealChar(char inputChar)
+    {
+        foreach (var hangChar in HangChars)
+        {
+            if (char.ToLower(hangChar.RealChar) == char.ToLower(inputChar))
+            {
+                hangChar.IsMasked = false;
+            }
+        }
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
