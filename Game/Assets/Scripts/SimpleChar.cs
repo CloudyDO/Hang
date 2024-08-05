@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.TextCore;
 using UnityEngine.UI;
 
 public class SimpleChar : MonoBehaviour, IHangChar
@@ -100,30 +96,11 @@ public class SimpleChar : MonoBehaviour, IHangChar
 
         _allChars.Add(this);
     }
-    // Start is called before the first frame update
     void Start()
     {
 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
-        {
-            string inputString = Input.inputString;
-
-            if (!string.IsNullOrEmpty(inputString) && char.IsLetter(inputString[0]))
-            {
-                char inputChar = inputString[0];
-                foreach (SimpleChar hangChar in _allChars)
-                {
-                    if (hangChar.IsMasked && hangChar.RealChar == inputChar)
-                    {
-                        hangChar.IsMasked = false;
-                    }
-                }
-            }
-        }
     }
 }
