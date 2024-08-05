@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1051301020249960552
+--- !u!1001 &3351111695878056822
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -29,16 +29,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: 7bd0be5c4daf32c46a40eaf084832cfb, type: 3}
+      objectReference: {fileID: 1630556139013615095}
     - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: KeyboardKey, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289100487170866397, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7836445413031927421, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
       propertyPath: m_Name
-      value: Button1 Variant
+      value: KeyboardKey
       objectReference: {fileID: 0}
     - target: {fileID: 7906767848598054601, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
       propertyPath: m_SizeDelta.x
@@ -151,5 +171,25 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7836445413031927421, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1630556139013615095}
   m_SourcePrefab: {fileID: 100100000, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+--- !u!1 &4774149583329965323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7836445413031927421, guid: 618bf47002bf89346a9bf7734bdc2756, type: 3}
+  m_PrefabInstance: {fileID: 3351111695878056822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1630556139013615095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774149583329965323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1e4e8fe6ab9f44695703f8e03f05dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
